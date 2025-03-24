@@ -1,0 +1,14 @@
+lass Ford():
+    
+    #function that gets executed automatically-constructor
+    def __init__(self, NoD,color):
+        print("constructor was executed")
+        self.number_of_doors=5
+        self.color="blue"
+        self.engine_manufacturer="germany"
+    def move_the_car():
+        print("car is moving")
+#object creation/instantiation
+f19=Ford(4,"blue")
+
+
