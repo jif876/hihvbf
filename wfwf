@@ -1,0 +1,59 @@
+import pygame
+from time import *
+import sys
+
+# Initialize pygame
+pygame.init()
+
+# Screen dimensions
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Rocket Game")
+rocket_x=100
+rocket_y=100
+
+# Colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+# Rocket setup
+rocket = pygame.image.load("rocket.png") 
+background = pygame.image.load("back.png")
+
+
+rocket_speed = 18  # Speed in pixels per second
+
+# Game loop
+#clock = pygame.time.Clock()
+while True:
+    screen.blit(background, (0, 0))  # Clear the screen with white
+    rocket = pygame.transform.scale(rocket, (50, 50))
+    rocket_rect = rocket.get_rect(center=(rocket_x, rocket_y))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            # If the user clicks the close button, exit the game
+            pygame.quit()
+            sys.exit() 
+
+    # Movement keys
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP]:
+        rocket_rect.y -= rocket_speed
+    if keys[pygame.K_DOWN]:
+        rocket_rect.y += rocket_speed
+    if keys[pygame.K_LEFT]:
+        rocket_rect.x -= rocket_speed
+    if keys[pygame.K_RIGHT]:
+        rocket_rect.x += rocket_speed
+
+    # Screen boundaries
+    rocket_rect.x = max(0, min(WIDTH - rocket_rect.width, rocket_rect.x))
+    rocket_rect.y = max(0, min(HEIGHT - rocket_rect.height, rocket_rect.y))
+
+    # Drawing
+    screen.fill(BLACK,)
+    screen.blit(rocket, rocket_rect)
+    pygame.display.flip()
+    rocket_y=rocket_y+5# Move the rocket down by 15 pixels each frame
+    # Frame rate
+    sleep(1)  # Adjust the sleep time to control the frame rate
