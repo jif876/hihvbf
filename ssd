@@ -1,0 +1,7 @@
+name=input("my name is")
+print("the name you have entered is:"+name)
+age=input("my age is")
+print("the age you have entered is:"+age) 
+print("hello"+name+" your age is"+age+ " years old and like cars")
+age2=(age)+2
+print("in two years you will be"+(age2)+" years old")
